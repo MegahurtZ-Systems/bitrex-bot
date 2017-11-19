@@ -3,48 +3,36 @@
   <head>
     <meta charset="utf-8">
     <title>Bittrex Bot</title>
-    <link rel="stylesheet" href="main.css"/>
+    <link rel="stylesheet" href="assets/css/main.css"/>
+    <link rel="stylesheet" href="assets/css/font-awesome.css"/>
   </head>
   <body>
     <div class='nav'>
-      <ui>Home</ui>
-    </div>
-    <div class='main'>
-      <div>
-        <ul class='coin'>Bitcoin
-          <ul class='price'>Last</ul>
-          <ul class='price'>High</ul>
-          <ul class='price'>Low</ul>
-        </ul>
-        <ul class='coin'>Litecoin
-          <ul class='price'>Last</ul>
-          <ul class='price'>High</ul>
-          <ul class='price'>Low</ul>
-        </ul>
-        <ul class='coin'>Ethereum
-          <ul class='price'>Last</ul>
-          <ul class='price'>High</ul>
-          <ul class='price'>Low</ul>
-        </ul>
+      <div class="logo">
+        <img src="assets/img/btcoin-logo-500x500.png" alt="Logo">
       </div>
+      <ul>
+        <script type="text/JavaScript" src="assets/js/headder.js"></script>
+      </ul>
     </div>
-
-    <script type="text/JavaScript" src="app.js"></script>
+    <div id="mySidenav" class="sidenav">
+      <a href="javascript:void(0)" class="fa fa-window-close" onclick="closeNav()"></a>
+      <a href="#">About</a>
+      <a href="#">Services</a>
+      <a href="#">Clients</a>
+      <a href="#">Contact</a>
+    </div>
+    <div class="body">
+      <!-- Use any element to open the sidenav -->
+      <span onclick="openNav()"><i class="fa fa-bars fa-2x" aria-hidden="true"></i></span>
+      <ul>Bitcoin
+        <ul>Current</ul>
+        <ul>High</ul>
+        <ul>Low</ul>
+      </ul>
+    </div>
+    <div class="footer">
+    </div>
+    <script type="text/JavaScript" src="assets/js/app.js"></script>
   </body>
-    <footer>test</footer>
 </html>
-
-<!--
-"MarketName":"USDT-BTC",
-"High":8070.00000000,
-"Low":7649.44999900,
-"Volume":4075.29237306,
-"Last":7999.00000000,
-"BaseVolume":32069207.18652935,
-"TimeStamp":"2017-11-19T19:33:23.537",
-"Bid":7999.00000000,
-"Ask":7999.00000001,
-"OpenBuyOrders":14166,
-"OpenSellOrders":3053,
-"PrevDay":7749.45000005,
-"Created":"2015-12-11T06:31:40.633" -->
