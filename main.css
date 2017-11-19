@@ -1,5 +1,5 @@
 *{
-  /*border: 1px dashed black;*/
+  border: 1px dashed black;
   background-color: darkgrey;
 }
 
@@ -15,4 +15,14 @@
   height: 1000px;
   background-color: grey;
   color: yellow;
+}
+
+.coin{
+  float: left;
+  width: 250px;
+  height: 100px;
+}
+
+.price{
+
 }
