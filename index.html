@@ -3,20 +3,36 @@
   <head>
     <meta charset="utf-8">
     <title>Bittrex Bot</title>
-    <link rel="stylesheet" href="main.css"/>
+    <link rel="stylesheet" href="assets/css/main.css"/>
+    <link rel="stylesheet" href="assets/css/font-awesome.css"/>
   </head>
   <body>
     <div class='nav'>
       <div class="logo">
-
+        <img src="assets/img/btcoin-logo-500x500.png" alt="Logo">
       </div>
+      <ul>
+        <script type="text/JavaScript" src="assets/js/headder.js"></script>
+      </ul>
+    </div>
+    <div id="mySidenav" class="sidenav">
+      <a href="javascript:void(0)" class="fa fa-window-close" onclick="closeNav()"></a>
+      <a href="#">About</a>
+      <a href="#">Services</a>
+      <a href="#">Clients</a>
+      <a href="#">Contact</a>
     </div>
     <div class="body">
-
+      <!-- Use any element to open the sidenav -->
+      <span onclick="openNav()"><i class="fa fa-bars fa-2x" aria-hidden="true"></i></span>
+      <ul>Bitcoin
+        <ul>Current</ul>
+        <ul>High</ul>
+        <ul>Low</ul>
+      </ul>
     </div>
     <div class="footer">
     </div>
-    <script type="text/JavaScript" src="app.js"></script>
+    <script type="text/JavaScript" src="assets/js/app.js"></script>
   </body>
 </html>
-
