@@ -23,19 +23,34 @@
   bottom: 0px;
 }
 
-.logo{
+.logo {
   width: 75px;
   height: 75px;
   background-color: inherit;
+  display: inline-block;
+  float: left;
 }
 
-.logo img{
+.logo img {
   height: 70px;
   width: 70px;
   padding-left: 2px;
   padding-top: 2px;
 }
-
+.aboutUs, .wiki, .faq, .alink, .link, .home {
+  float: right;
+  height: 75px;
+  width: 100px;
+  background-color: #3B3A35;
+    border: 1px solid black;
+}
+.aboutUs a, .wiki a, .faq a, .alink a, .link a, .home a {
+  color: #EAEAEA;
+  background-color: #3B3A35;
+}
+.topNav a:hover {
+    color: grey;
+}
 /* The side navigation menu */
 .sidenav {
     height: 100%; /* 100% Full-height */
