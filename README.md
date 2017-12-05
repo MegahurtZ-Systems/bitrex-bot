@@ -11,3 +11,8 @@ HTML5, CSS, JavaScript
 - Step 3) Implement Mock trading algorithms for testing.
 - Step 4) Be able to make manual trades from the site using API's and keys.
 - Step 5) Integrate Trading and Bot algorithms for auto trades.
+
+### Project Notes.
+- jquery-3, ajax
+- -$('selector string').actionToPerform(args);
+- https://oscarotero.com/jquery/
