@@ -99,3 +99,11 @@
 .body{
   padding-top: 75px;
 }
+th, td {
+  width: 200px;
+  height: 40px;
+  border: 1px solid black;
+}
+#output{
+  display: none;
+}
