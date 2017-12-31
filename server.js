@@ -4,7 +4,7 @@ const pg = require('pg');
 const fs = require('fs');
 const express = require('express');
 const bodyParser = require('body-parser');
-const PORT = process.env.PORT || 3001;
+const PORT = process.env.PORT || 3005;
 const app = express();
 
 const conString = 'postgres://postgres:GiGahurtZ42@localhost:5432/kilovolt2';
