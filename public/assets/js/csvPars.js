@@ -9,7 +9,7 @@ readFile = function(csv){
     var csv = event.target.result;
     var allTextLines = csv.split(/\r\n|\n/);
     for (var i = 0; allTextLines.length; i++){
-      var data = allTextLines[i].split(';');
+      var data = allTextLines[i].split('</br>');
       var tarr = [];
       for (var j = 0; j < data.length; j++){
         tarr.push(data[j]);

@@ -1,0 +1,30 @@
+{
+  "name": "bitrex-bot",
+  "version": "1.0.0",
+  "description": "## This is still under HEAVY development and no where near ready for implementation.",
+  "main": "server.js",
+  "dependencies": {
+    "apeman-api-sign": "^2.1.4",
+    "body-parser": "^1.18.2",
+    "express": "^4.16.2",
+    "fs": "0.0.1-security",
+    "jquery": "^3.2.1",
+    "nodemon": "^1.14.6",
+    "pg": "^7.4.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MegahurtZ-Systems/bitrex-bot.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/MegahurtZ-Systems/bitrex-bot/issues"
+  },
+  "homepage": "https://github.com/MegahurtZ-Systems/bitrex-bot#readme"
+}

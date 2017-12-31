@@ -15,4 +15,5 @@ HTML5, CSS, JavaScript
 ### Project Notes.
 - jquery-3, ajax
 - -$('selector string').actionToPerform(args);
+- dependencies - npm install nodemon express body-parser pg fs
 - https://oscarotero.com/jquery/
