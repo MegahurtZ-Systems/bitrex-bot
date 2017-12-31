@@ -1,9 +1,11 @@
 # bitrex-bot
 
 ## This is still under HEAVY development and no where near ready for implementation.
+- to run server, use terminal to enter folder then run the server.js with nodejs.
+- then in web browser goto localhost:3005
 
 ### Technologies used in the development of this app.
-HTML5, CSS, JavaScript
+HTML5, CSS, JavaScript, nodejs
 
 ### Purpose.
 - Step 1) The purpose of this app is to pull and display data from Bittrex via their API.
