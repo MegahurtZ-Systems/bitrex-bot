@@ -9,7 +9,9 @@
     "express": "^4.16.2",
     "fs": "0.0.1-security",
     "jquery": "^3.2.1",
+    "node-bittrex-api": "^0.8.1",
     "nodemon": "^1.14.6",
+    "p5": "^0.5.16",
     "pg": "^7.4.0"
   },
   "devDependencies": {},
