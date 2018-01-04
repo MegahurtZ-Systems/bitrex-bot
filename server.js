@@ -7,7 +7,8 @@ const pg = require('pg');//for connection to PostgreSQL database.
 const fs = require('fs');//for communication with File System.
 const express = require('express');//web server.
 const bodyParser = require('body-parser');
-const bittrex = require('node-bittrex-api');
+//const bittrex = require('node-bittrex-api');
+const axios = require('axios');
 const PORT = process.env.PORT || 3005;//listen port for server.
 const app = express();//runs the web server application.
 
@@ -30,35 +31,46 @@ app.get('/new', (request, response) => {
   response.sendFile('new.html', {root: './public'});
 });
 
-bittrex.options({
-  'apikey' : API_KEY,
-  'apisecret' : API_SECRET,
-});
-
-
+// bittrex.options({
+//   'apikey' : API_KEY,
+//   'apisecret' : API_SECRET,
+// });
 
 app.listen(PORT, () => {
   console.log(`Server started on port: ${PORT}!`);
 });
 
+// axios.get("https://bittrex.com/api/v1.1/public/getmarkets")
+// .then(function (response) {
+//   console.log(response);
+// })
+// .catch(function (error) {
+//   console.log(error);
+// });
 
-bittrex.getmarketsummaries( function( data, err ) {
-  if (err) {
-    return console.error(err);
-  }
-  for( var i in data.result ) {
-    bittrex.getticker( { market : data.result[i].MarketName }, function( ticker ) {
-      //console.log( ticker );
-    });
-  }
-});
+// axios.get('https://bittrex.com/api/v1.1/public/getmarkets')
+//   .then(results => console.log(results.data.result[0]))
+//   .catch(function (error) {
+//     console.log(error);
+//   });
 
-bittrex.getmarkethistory( { market : 'BTC-ETH' }, function( data ) {
-  console.log( data.result );
-});
-
-bittrex.getorderbook( { market : 'BTC-PIVX', depth : 10, type : 'both' }, function( data ) {
-
-    //data.result.buy.forEach(function(dataset) { console.log(dataset); });
-    //data.result.sell.forEach(function(dataset) { console.log(dataset); });
-});
+// bittrex.getmarketsummaries( function( data, err ) {
+//   if (err) {
+//     return console.error(err);
+//   }
+//   for( var i in data.result ) {
+//     bittrex.getticker( { market : data.result[i].MarketName }, function( ticker ) {
+//       //console.log( ticker );
+//     });
+//   }
+// });
+//
+// bittrex.getmarkethistory( { market : 'BTC-ETH' }, function( data ) {
+//   //console.log( data.result );
+// });
+//
+// bittrex.getorderbook( { market : 'BTC-PIVX', depth : 10, type : 'both' }, function( data ) {
+//
+//     //data.result.buy.forEach(function(dataset) { console.log(dataset); });
+//     //data.result.sell.forEach(function(dataset) { console.log(dataset); });
+// });

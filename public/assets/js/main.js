@@ -1,13 +1,23 @@
-bittrex.getmarketsummaries( function( data, err ) {
-  if (err) {
-    return console.error(err);
-  }
-  for( var i in data.result ) {
-    bittrex.getticker( { market : data.result[i].MarketName }, function( ticker ) {
-      console.log( ticker );
-    });
-  }
-});
+//var data = []
+
+$.getJSON('assets/docs/markets.json')
+.then(data => console.log(
+  data.result[0],
+  data.result[1],
+  data.result[2]
+))
+
+
+// bittrex.getmarketsummaries( function( data, err ) {
+//   if (err) {
+//     return console.error(err);
+//   }
+//   for( var i in data.result ) {
+//     bittrex.getticker( { market : data.result[i].MarketName }, function( ticker ) {
+//       console.log( ticker );
+//     });
+//   }
+// });
 
 // function logResults(json){
 //   console.log(json);

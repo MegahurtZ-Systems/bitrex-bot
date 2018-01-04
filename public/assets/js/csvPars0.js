@@ -1,31 +1,10 @@
 var fileInput = document.getElementById('csv');
-var fileData = [];
 
-readFile = function(csv){
-  fileData.length = 0;
-  //var elem = document.getElementClass("market-data");//part one of deleting the total row
-  //elem.parentElement.removeChild(elem);//part Two of deleting the total row
-  var reader = new FileReader();
-  reader.onload = function(){
-    //debugger;
-    var csv = event.target.result;
-    var allTextLines = csv.split(/\r\n|\n/);
-    for (var i = 0; i < allTextLines.length; i++){
-      var data = allTextLines[i].split(',');
-      var tarr = [];
-      for (var j = 0; j < data.length; j++){
-        tarr.push(data[j]);
-      }
-      fileData.push(tarr);
-    }
-  console.log(fileData);
-  makeHeaderRow();
-  buildTable();
-  // document.getElementById('output').innerHTML = reader.result;
-  };
-  reader.readAsBinaryString(fileInput.files[0]);
-};
-fileInput.addEventListener('change', readFile);
+fileData = $.csv.toArrays(csv, {
+  delimiter:"'", // sets a custom value delimiter character
+  separator:';', // sets a custom field separator character
+});
+fileInput.addEventListener('change', csv);
 
 function makeHeaderRow(){
   var tradeData = document.getElementById('tradeData');
