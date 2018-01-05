@@ -6,6 +6,7 @@ readFile = function(csv){
   var elem = document.getElementsByClassName("market-data");//part one of deleting the total row
   //var elem = document.getElementById("tradeData");//part one of deleting the total row
   //elem.parentElement.removeChild(elem);//part Two of deleting the total row
+  // $("#table-filters>tr>td.active").removeClass("market-data");
   var reader = new FileReader();
   reader.onload = function(){
     //debugger;
