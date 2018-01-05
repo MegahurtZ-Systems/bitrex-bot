@@ -4,6 +4,9 @@
 - to run server, use terminal to enter folder then run the server.js with nodejs.
 - then in web browser goto localhost:3005
 
+## Updates
+- Jan 04 2018 - After some time developing this app we have come to a decision to change the name from Bitres-Box to Bitrex-Tools.  We realized we were building an application that went beyond the scope of a just a bot.  We will still be developing the bot as one of the tools included in this application, but this has started to become much more than just a bot.
+
 ### Technologies used in the development of this app.
 HTML5, CSS, JavaScript, nodejs
 
@@ -19,7 +22,16 @@ HTML5, CSS, JavaScript, nodejs
 - jquery-3, ajax
 - -$('selector string').actionToPerform(args);
 - dependencies - npm install nodemon express body-parser pg fs node-bittrex-api axios
+- nodemon - checks server for changes and applies them without restarting the server
+- express - Web server
+- body-parser - parses body data
+- pg - connector for PostgreSQL database
+- fs - File system package
+- node-bittrex-api - api connector for bittrex data
+- axios - json api data parser
 - https://oscarotero.com/jquery/
 
 ### Current Issues.
 - Need to figure out how to remove "" from CSV while being read and input to array.
+- seperate api keys from the server to a file that can be added to the .gitignore file.
+-

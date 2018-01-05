@@ -12,7 +12,7 @@ function closeNav() {
 };
 
 function generateNavLinks(){
-  document.write('<a href="#">Link 1</a>');
+  document.write('<a href="analytics.html">Analytics</a>');
   document.write('<a href="#">Link 2</a>');
   document.write('<a href="#">Link 3</a>');
   document.write('<a href="#">Link 4</a>');
