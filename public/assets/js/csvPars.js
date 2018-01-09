@@ -2,7 +2,7 @@ var fileInput = document.getElementById('csv');
 var fileData = [];
 
 readFile = function(csv){
-  fileData.length = 0;
+  fileData.length = 0;//emptys array data when new file is selected.
   var elem = document.getElementsByClassName("market-data");//part one of deleting the total row
   //var elem = document.getElementById("tradeData");//part one of deleting the total row
   //elem.parentElement.removeChild(elem);//part Two of deleting the total row
@@ -23,7 +23,8 @@ readFile = function(csv){
   console.log(fileData);
   buildTable();
   };
-  reader.readAsBinaryString(fileInput.files[0]);
+  //reader.readAsBinaryString(fileInput.files[0]);
+  reader.readAsText(fileInput.files[0], 'UTF-16LE');
 };
 fileInput.addEventListener('change', readFile);
 
@@ -32,7 +33,7 @@ function buildTable() {
   var tradeData = document.getElementById('tradeData');
   var trEl = document.createElement('tr'); //creates table div.
   trEl.setAttribute("class","market-data");// gives created row an Class.
-  for(var i = 0; i < fileData[0].length - 1; i++){
+  for(var i = 0; i < fileData[0].length; i++){
     var thEl = document.createElement('th'); //creates top table row.
     thEl.textContent = fileData[0][i];
     trEl.appendChild(thEl);
@@ -41,7 +42,7 @@ function buildTable() {
   for (var j = 1; j < fileData.length; j++){
     var trEl = document.createElement('tr'); //creates table div.
     trEl.setAttribute("class","market-data");// gives created row an Class.
-    for (var k = 0; k < fileData[j].length - 1; k++){
+    for (var k = 0; k < fileData[j].length; k++){
       var rowData = [];
       var tdEl = document.createElement('td'); //creates table data.
       rowData = fileData[j];
