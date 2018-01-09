@@ -1,4 +1,4 @@
-# bitrex-bot
+# bitrex-tools
 
 ## This is still under HEAVY development and no where near ready for implementation.
 - to run server, use terminal to enter folder then run the server.js with nodejs.
@@ -31,7 +31,12 @@ HTML5, CSS, JavaScript, nodejs
 - axios - json api data parser
 - https://oscarotero.com/jquery/
 
-### Current Issues.
+### Current Issues/to do list.
 - Need to figure out how to remove "" from CSV while being read and input to array.
 - seperate api keys from the server to a file that can be added to the .gitignore file.
--
+- Use axios to pull public market data and store in variable arrays.  
+- Use bittrex-api for advanced features that will require the user to create an account.
+- Create functions that download and update market historical data to postgresql database.
+- look to see if there is anything already made that can pull the bittrex market data and store them to a json file.
+- look for method to import json data, manipulate it via javascript, then save the updated data to the json file.
+- lood for a method to use internet version of jquery but be able to fall back on a localy stored version when web is not available.
