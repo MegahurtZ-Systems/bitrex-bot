@@ -13,7 +13,7 @@ const PORT = process.env.PORT || 3005;//listen port for server.
 const app = express();//runs the web server application.
 
 const conString = 'postgres://postgres:GiGahurtZ42@localhost:5432/data';//credentials psql database.
-const client = new pg.Client(conString);//uses credentials to connecto to psql database.
+const client = new pg.Client(conString);//uses credentials to connect to psql database.
 const API_KEY = '';
 const API_SECRET ='';
 
