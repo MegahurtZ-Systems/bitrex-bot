@@ -32,7 +32,6 @@ HTML5, CSS, JavaScript, nodejs
 - https://oscarotero.com/jquery/
 
 ### Current Issues/to do list.
-- Need to figure out how to remove "" from CSV while being read and input to array.
 - seperate api keys from the server to a file that can be added to the .gitignore file.
 - Use axios to pull public market data and store in variable arrays.  
 - Use bittrex-api for advanced features that will require the user to create an account.
