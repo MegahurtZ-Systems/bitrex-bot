@@ -40,19 +40,13 @@ app.listen(PORT, () => {
   console.log(`Server started on port: ${PORT}!`);
 });
 
-// axios.get("https://bittrex.com/api/v1.1/public/getmarkets")
-// .then(function (response) {
-//   console.log(response);
-// })
-// .catch(function (error) {
-//   console.log(error);
-// });
+var bittrexPublicAPI = 'https://bittrex.com/api/v1.1/public/';
 
-// axios.get('https://bittrex.com/api/v1.1/public/getmarkets')
-//   .then(results => console.log(results.data.result[0]))
-//   .catch(function (error) {
-//     console.log(error);
-//   });
+axios.get(bittrexPublicAPI + 'getmarkets')
+  .then(results => console.log(results.data.result[0]))
+  .catch(function (error) {
+    console.log(error);
+  });
 
 // bittrex.getmarketsummaries( function( data, err ) {
 //   if (err) {

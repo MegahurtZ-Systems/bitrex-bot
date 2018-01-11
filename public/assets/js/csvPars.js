@@ -1,12 +1,17 @@
 var fileInput = document.getElementById('csv');
-var fileData = [];
+var csvData = [];//Raw CSV data
+var convertedData = [];
+
+/*need to convert array in csvData to an object in convertedData
+"OrderUuid", "Exchange", "Type", "Quantity", "Limit", "CommissionPaid", "Price", "Opened", "Closed"
+arrage data by Exchange, Type, then Closed.
+*/
 
 readFile = function(csv){
-  fileData.length = 0;//emptys array data when new file is selected.
-  var elem = document.getElementsByClassName("market-data");//part one of deleting the total row
+  csvData.length = 0;//emptys array data when new file is selected.
+  //var elem = document.getElementsByClassName("market-data");//part one of deleting the total row
   //var elem = document.getElementById("tradeData");//part one of deleting the total row
   //elem.parentElement.removeChild(elem);//part Two of deleting the total row
-  // $("#table-filters>tr>td.active").removeClass("market-data");
   var reader = new FileReader();
   reader.onload = function(){
     //debugger;
@@ -18,9 +23,9 @@ readFile = function(csv){
       for (var j = 0; j < data.length; j++){
         tarr.push(data[j]);
       }
-      fileData.push(tarr);
+      csvData.push(tarr);
     }
-  console.log(fileData);
+  console.log(csvData);
   buildTable();
   };
   //reader.readAsBinaryString(fileInput.files[0]);
@@ -33,22 +38,30 @@ function buildTable() {
   var tradeData = document.getElementById('tradeData');
   var trEl = document.createElement('tr'); //creates table div.
   trEl.setAttribute("class","market-data");// gives created row an Class.
-  for(var i = 0; i < fileData[0].length; i++){
+  for(var i = 1; i < csvData[0].length; i++){
     var thEl = document.createElement('th'); //creates top table row.
-    thEl.textContent = fileData[0][i];
+    thEl.textContent = csvData[0][i];
     trEl.appendChild(thEl);
   }
   tradeData.appendChild(trEl);
-  for (var j = 1; j < fileData.length; j++){
+  for (var j = 1; j < csvData.length; j++){
     var trEl = document.createElement('tr'); //creates table div.
     trEl.setAttribute("class","market-data");// gives created row an Class.
-    for (var k = 0; k < fileData[j].length; k++){
+    for (var k = 1; k < csvData[j].length; k++){
       var rowData = [];
       var tdEl = document.createElement('td'); //creates table data.
-      rowData = fileData[j];
+      rowData = csvData[j];
       tdEl.textContent = rowData[k];
       trEl.appendChild(tdEl);
       tradeData.appendChild(trEl);
     }
   }
+  event.preventDefault();
+};
+
+function destroyTable() {
+  debugger;
+  //var elem = document.getElementsByClassName("market-data");//part one of deleting the total row
+  //elem.parentElement.removeChild(elem);//part Two of deleting the total row
+  $("#table-filters>tr>td.active").removeClass("market-data");
 };
