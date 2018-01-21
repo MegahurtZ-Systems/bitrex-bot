@@ -1,11 +1,31 @@
 //var data = []
 
-$.getJSON('assets/docs/markets.json')
-.then(data => console.log(
-  data.result[0],
-  data.result[1],
-  data.result[2]
-))
+axios.get('https://bittrex.com/api/v1.1/public/getmarkets')
+  .then(function(response) {
+    console.log(response.data);
+    console.log(response.status);
+    console.log(response.statusText);
+    console.log(response.headers);
+    console.log(response.config);
+  });
+
+// axios({
+//   method:'get',
+//   url:'https://bittrex.com/api/v1.1/public/getmarkets',
+//   responseType:'text'
+// })
+//   .then(
+//     data => {
+//     console.log(data);
+
+// });
+
+// $.getJSON('assets/docs/markets.json')
+// .then(data => console.log(
+//   data.result[0],
+//   data.result[1],
+//   data.result[2]
+// ))
 
 
 // bittrex.getmarketsummaries( function( data, err ) {
@@ -23,11 +43,17 @@ $.getJSON('assets/docs/markets.json')
 //   console.log(json);
 // }
 //
+
 // $.ajax({
 //   url: "https://bittrex.com/api/v1.1/public/getmarkets?format=json",
-//   dataType: "jsonp",
-//   jsonpCallback: "logResults"
-// });
+//   method: 'GET',
+//   timeout: 2000
+// })
+// .then(
+//   data => {
+//     console.log(data);
+//   })
+
 
 
 // $.getJSON(
