@@ -46,12 +46,12 @@ app.listen(PORT, () => {
 const bittrexPublicAPI = 'https://bittrex.com/api/v1.1/public/';
 var markets = [];
 
-axios.get(bittrexPublicAPI + 'getmarkets')
-  .then(results => markets.push(results.data.result[0])
-)
-  .catch(function (error) {
-    console.log(error);
-});
+// axios.get(bittrexPublicAPI + 'getmarkets')
+//   .then(results => markets.push(results.data.result[0])
+// )
+//   .catch(function (error) {
+//     console.log(error);
+// });
 
 app.get('/api/bittrex/markets', (req, res) => {
   let url_markets = `${bittrexPublicAPI}getmarkets`;

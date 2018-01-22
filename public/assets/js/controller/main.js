@@ -1,13 +1,13 @@
 //var data = []
 
-axios.get('https://bittrex.com/api/v1.1/public/getmarkets')
-  .then(function(response) {
-    console.log(response.data);
-    console.log(response.status);
-    console.log(response.statusText);
-    console.log(response.headers);
-    console.log(response.config);
-  });
+// axios.get('https://bittrex.com/api/v1.1/public/getmarkets')
+//   .then(function(response) {
+//     console.log(response.data);
+//     console.log(response.status);
+//     console.log(response.statusText);
+//     console.log(response.headers);
+//     console.log(response.config);
+//   });
 
 // axios({
 //   method:'get',
@@ -18,7 +18,6 @@ axios.get('https://bittrex.com/api/v1.1/public/getmarkets')
 //     data => {
 //     console.log(data);
 
-// });
 
 // $.getJSON('assets/docs/markets.json')
 // .then(data => console.log(
