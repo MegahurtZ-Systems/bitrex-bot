@@ -37,6 +37,22 @@
   padding-left: 2px;
   padding-top: 2px;
 }
+
+#markets {
+  list-style:none;
+  display: inline-block;
+}
+
+.coin-logo {
+  height: 30px;
+  width: 30px;
+  float: left;
+}
+
+.market-data h6 {
+  float: left;
+}
+
 .aboutUs, .wiki, .faq, .alink, .link, .home {
   float: right;
   height: 75px;
@@ -99,6 +115,7 @@
 .body{
   padding-top: 75px;
 }
+
 th, td {
   max-width:101%;
   height: 20px;
@@ -106,6 +123,7 @@ th, td {
   border: 1px solid black;
   padding: 0px;
 }
+
 #output{
   display: none;
 }
