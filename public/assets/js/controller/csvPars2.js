@@ -1,7 +1,7 @@
 var fileInput = document.getElementById('csv');
 var csvData = [];//Raw CSV data
 var convertedData = [];
-var userTimeZone;
+var userTimeZone = "EST";
 var length;
 /*need to convert array in csvData to an object in convertedData
 "OrderUuid", "Exchange", "Type", "Quantity", "Limit", "CommissionPaid", "Price", "Opened", "Closed"
@@ -26,7 +26,7 @@ readFile = function(csv){
       }
       csvData.push(tarr);
     }
-  console.log(csvData);
+  timeCodeConv();
   buildTable();
   };
   //reader.readAsBinaryString(fileInput.files[0]);
@@ -68,6 +68,13 @@ function destroyTable() {
 };
 
 function timeConv() {
+  toConv = toConv.split(" ");
+  var myDate = toConv[0];
+  myDate = myDate.split("/");
+  var myTime = toConv[1];
+  myTime = myTime.split(":");
+  length = myTime.length;
+  toNum(length);
   switch(userTimeZone) {
     case "HST": myTime[0] += 10; console.log(myTime); break;
     case "AKST": myTime[0] += 9; console.log(myTime); break;
@@ -76,6 +83,10 @@ function timeConv() {
     case "CST": myTime[0] += 6; console.log(myTime); break;
     case "EST": myTime[0] += 5; console.log(myTime); break;
   }
+  myTime += danConv;
+  if (myTime >= 24){
+
+  }
 }
 
 function toNum(){
@@ -83,14 +94,19 @@ function toNum(){
     myTime[i] = Number(myTime[i]);
   }
 }
-var toConv = "8/9/2017 9:13:16";
-toConv = toConv.split(" ");
-var myDate = toConv[0];
-myDate = myDate.split("/");
-var myTime = toConv[1];
-myTime = myTime.split(":");
-length = myTime.length;
-userTimeZone = "EST";
-toNum(length);
-timeConv(myTime);
+
+function timeCodeConv() {
+  for (i = 0; i < csvData.length; i++){
+    var test = csvData[i][8];
+    var danConv;
+    if (test.includes(" AM") === true){
+      danConv = 0;
+      timeConv(danConv);
+    } else {
+      danConv = 12;
+      timeConv(danConv);
+    };
+  };
+}
+
 // var test = new Date().getTime();
