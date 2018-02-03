@@ -18,7 +18,6 @@ readFile = function(csv){
   //elem.parentElement.removeChild(elem);//part Two of deleting the total row
   var reader = new FileReader();
   reader.onload = function(){
-    //debugger;
     var csv = event.target.result;
     var allTextLines = csv.split(/\r\n|\n/);
     for (var i = 0; i < allTextLines.length; i++){
@@ -80,8 +79,7 @@ function toNum(){
 }
 
 function timeCodeConv() {
-  for (var i = 0; i < csvData.length; i++){
-    var orig = csvData[i + 1][8];
+  for (var i = 0; i < csvData.length - 2; i++){
     var toConv = csvData[i + 1][8];
     toConv = toConv.split(" ");
     var myDate = toConv[0];
@@ -94,32 +92,14 @@ function timeCodeConv() {
     length = myTime.length;
     numConv = myTime;
     myTime = toNum(myTime, length);
-    myTime[0] += dotChecker(orig);
-    timeZone(userTimeZone, myTime, myDate);
+    csvData[i + 1][7] = serverSideTime(i, myDate, myTime, csvData);
   }
 }
 
-function timeZone(userTimeZone, myTime, myDate) {
-  switch(userTimeZone) {
-    case "HST": myTime[0] += 10; timeChecker(myTime, myDate); debugger; break;
-    case "AKST": myTime[0] += 9; timeChecker(myTime, myDate); debugger; break;
-    case "PST": myTime[0] += 8; timeChecker(myTime, myDate); debugger; break;
-    case "MST": myTime[0] += 7; timeChecker(myTime, myDate); debugger; break;
-    case "CST": myTime[0] += 6; timeChecker(myTime, myDate); debugger; break;
-    case "EST": myTime[0] += 5; timeChecker(myTime, myDate); debugger; break;
-  }
+function serverSideTime(i, myDate, myTime){
+  newDate = myDate[0] + "/" + myDate[1] + "/" + myDate[2] + " " + myTime[0] + ":" + myTime[1] + ":" + myTime[2];
+  var toConv = new Date(newDate).getTime();
+  return toConv;
 }
 
-function dotChecker(orig){
-  if (orig.includes("AM")){
-    var toAdd = 0;
-  } else {
-    var toAdd = 12;
-  }
-  return toAdd;
-}
-
-function timeChecker() {
-  
-}
 // var test = new Date().getTime();
