@@ -4,6 +4,8 @@ var convertedData = [];
 var userTimeZone = "EST";
 var length;
 var numConv;
+var month = [1,2,3,4,5,6,7,8,9,10,11,12];
+var day = [31,28,31,30,31,30,31,31,30,31,30,31];
 /*need to convert array in csvData to an object in convertedData
 "OrderUuid", "Exchange", "Type", "Quantity", "Limit", "CommissionPaid", "Price", "Opened", "Closed"
 arrage data by Exchange, Type, then Closed.
@@ -79,6 +81,7 @@ function toNum(){
 
 function timeCodeConv() {
   for (var i = 0; i < csvData.length; i++){
+    var orig = csvData[i + 1][8];
     var toConv = csvData[i + 1][8];
     toConv = toConv.split(" ");
     var myDate = toConv[0];
@@ -91,18 +94,32 @@ function timeCodeConv() {
     length = myTime.length;
     numConv = myTime;
     myTime = toNum(myTime, length);
+    myTime[0] += dotChecker(orig);
+    timeZone(userTimeZone, myTime, myDate);
   }
 }
 
-// function timeZone(userTimeZone){
-//   switch(userTimeZone) {
-//     case "HST": myTime[0] += 10; dateCheck(dateAndTime[0]); break;
-//     case "AKST": myTime[0] += 9; dateCheck(dateAndTime[0]); break;
-//     case "PST": myTime[0] += 8; dateCheck(dateAndTime[0]); break;
-//     case "MST": myTime[0] += 7; dateCheck(dateAndTime[0]); break;
-//     case "CST": myTime[0] += 6; dateCheck(dateAndTime[0]); break;
-//     case "EST": myTime[0] += 5; dateCheck(dateAndTime[0]); break;
-//   }
-// }
+function timeZone(userTimeZone, myTime, myDate) {
+  switch(userTimeZone) {
+    case "HST": myTime[0] += 10; timeChecker(myTime, myDate); debugger; break;
+    case "AKST": myTime[0] += 9; timeChecker(myTime, myDate); debugger; break;
+    case "PST": myTime[0] += 8; timeChecker(myTime, myDate); debugger; break;
+    case "MST": myTime[0] += 7; timeChecker(myTime, myDate); debugger; break;
+    case "CST": myTime[0] += 6; timeChecker(myTime, myDate); debugger; break;
+    case "EST": myTime[0] += 5; timeChecker(myTime, myDate); debugger; break;
+  }
+}
 
+function dotChecker(orig){
+  if (orig.includes("AM")){
+    var toAdd = 0;
+  } else {
+    var toAdd = 12;
+  }
+  return toAdd;
+}
+
+function timeChecker() {
+  
+}
 // var test = new Date().getTime();
