@@ -3,6 +3,7 @@ var csvData = [];//Raw CSV data
 var convertedData = [];
 var userTimeZone = "EST";
 var length;
+var numConv;
 /*need to convert array in csvData to an object in convertedData
 "OrderUuid", "Exchange", "Type", "Quantity", "Limit", "CommissionPaid", "Price", "Opened", "Closed"
 arrage data by Exchange, Type, then Closed.
@@ -26,7 +27,7 @@ readFile = function(csv){
       }
       csvData.push(tarr);
     }
-  timeCodeConv();
+  timeCodeConv(csvData);
   buildTable();
   };
   //reader.readAsBinaryString(fileInput.files[0]);
@@ -67,46 +68,41 @@ function destroyTable() {
   $("#table-filters>tr>td.active").removeClass("market-data");
 };
 
-function timeConv() {
-  toConv = toConv.split(" ");
-  var myDate = toConv[0];
-  myDate = myDate.split("/");
-  var myTime = toConv[1];
-  myTime = myTime.split(":");
-  length = myTime.length;
-  toNum(length);
-  switch(userTimeZone) {
-    case "HST": myTime[0] += 10; console.log(myTime); break;
-    case "AKST": myTime[0] += 9; console.log(myTime); break;
-    case "PST": myTime[0] += 8; console.log(myTime); break;
-    case "MST": myTime[0] += 7; console.log(myTime); break;
-    case "CST": myTime[0] += 6; console.log(myTime); break;
-    case "EST": myTime[0] += 5; console.log(myTime); break;
-  }
-  myTime += danConv;
-  if (myTime >= 24){
-
-  }
-}
-
 function toNum(){
+  var filler = [];
   for (i = 0; i < length; i++){
-    myTime[i] = Number(myTime[i]);
+    var toPush = Number(numConv[i]);
+    filler.push(toPush);
   }
+  return filler;
 }
 
 function timeCodeConv() {
-  for (i = 0; i < csvData.length; i++){
-    var test = csvData[i][8];
-    var danConv;
-    if (test.includes(" AM") === true){
-      danConv = 0;
-      timeConv(danConv);
-    } else {
-      danConv = 12;
-      timeConv(danConv);
-    };
-  };
+  for (var i = 0; i < csvData.length; i++){
+    var toConv = csvData[i + 1][8];
+    toConv = toConv.split(" ");
+    var myDate = toConv[0];
+    var myTime = toConv[1];
+    myDate = myDate.split("/");
+    myTime = myTime.split(":");
+    length = myDate.length;
+    numConv = myDate;
+    myDate = toNum(myDate, length);
+    length = myTime.length;
+    numConv = myTime;
+    myTime = toNum(myTime, length);
+  }
 }
+
+// function timeZone(userTimeZone){
+//   switch(userTimeZone) {
+//     case "HST": myTime[0] += 10; dateCheck(dateAndTime[0]); break;
+//     case "AKST": myTime[0] += 9; dateCheck(dateAndTime[0]); break;
+//     case "PST": myTime[0] += 8; dateCheck(dateAndTime[0]); break;
+//     case "MST": myTime[0] += 7; dateCheck(dateAndTime[0]); break;
+//     case "CST": myTime[0] += 6; dateCheck(dateAndTime[0]); break;
+//     case "EST": myTime[0] += 5; dateCheck(dateAndTime[0]); break;
+//   }
+// }
 
 // var test = new Date().getTime();
