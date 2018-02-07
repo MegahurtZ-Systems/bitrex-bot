@@ -29,6 +29,7 @@ readFile = function(csv){
       csvData.push(tarr);
     }
   timeCodeConv(csvData);
+  csvData.sort(compareSecondColumn);
   buildTable();
   };
   //reader.readAsBinaryString(fileInput.files[0]);
@@ -37,7 +38,6 @@ readFile = function(csv){
 fileInput.addEventListener('change', readFile);
 
 function buildTable() {
-  //debugger;
   var tradeData = document.getElementById('tradeData');
   var trEl = document.createElement('tr'); //creates table div.
   trEl.setAttribute("class","market-data");// gives created row an Class.
@@ -102,4 +102,11 @@ function serverSideTime(i, myDate, myTime){
   return toConv;
 }
 
-// var test = new Date().getTime();
+function compareSecondColumn(a, b) {
+    if (a[7] === b[7]) {
+        return 0;
+    }
+    else {
+        return (a[7] < b[7]) ? -1 : 1;
+    }
+}
