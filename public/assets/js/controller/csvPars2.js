@@ -29,6 +29,7 @@ readFile = function(csv){
       csvData.push(tarr);
     }
   timeCodeConv(csvData);
+  printTableHeader();
   csvData.sort(compareSecondColumn);
   buildTable();
   };
@@ -38,18 +39,18 @@ readFile = function(csv){
 fileInput.addEventListener('change', readFile);
 
 function buildTable() {
-  var tradeData = document.getElementById('tradeData');
-  var trEl = document.createElement('tr'); //creates table div.
-  trEl.setAttribute("class","market-data");// gives created row an Class.
-  for(var i = 1; i < csvData[0].length; i++){
-    var thEl = document.createElement('th'); //creates top table row.
-    thEl.textContent = csvData[0][i];
-    trEl.appendChild(thEl);
-  }
-  tradeData.appendChild(trEl);
-  for (var j = 1; j < csvData.length; j++){
+  for (var j = 0; j < csvData.length; j++){
     var trEl = document.createElement('tr'); //creates table div.
-    trEl.setAttribute("class","market-data");// gives created row an Class.
+    debugger;
+    var coin = csvData[j][1];
+    if (csvData[j][1].search("BTC") == true) {
+      coin += " btc-markets";
+    } else if (csvData[j][1].search("ETH") == true) {
+      coin += " eth-markets";
+    } else if (csvData[j][1].search("USDT") == true){
+      coin += " usdt-markets";
+    }
+    trEl.setAttribute("class", coin);// gives created row an Class.
     for (var k = 1; k < csvData[j].length; k++){
       var rowData = [];
       var tdEl = document.createElement('td'); //creates table data.
@@ -69,40 +70,40 @@ function destroyTable() {
   $("#table-filters>tr>td.active").removeClass("market-data");
 };
 
-function toNum(){
-  var filler = [];
+function toNum(){ //converts the data into number vs a string for later coversion
+  var filler = []; //empty array to push later
   for (i = 0; i < length; i++){
-    var toPush = Number(numConv[i]);
-    filler.push(toPush);
+    var toPush = Number(numConv[i]); //converts the element into a number
+    filler.push(toPush); //pushes the element to filler array
   }
-  return filler;
+  return filler; //returns filler elements back into myTime or myDate for later convertions into serverside time code
 }
 
-function timeCodeConv() {
+function timeCodeConv() { //to convert the date and time to serverside time stamp for later sorting
   for (var i = 0; i < csvData.length - 2; i++){
-    var toConv = csvData[i + 1][8];
-    toConv = toConv.split(" ");
-    var myDate = toConv[0];
-    var myTime = toConv[1];
-    myDate = myDate.split("/");
-    myTime = myTime.split(":");
+    var toConv = csvData[i + 1][8]; //pulls the 8th element of csvData for the current line
+    toConv = toConv.split(" "); //splits the element by the space, splits it into 2 elements to go into 2 seperate arrays
+    var myDate = toConv[0]; //puts Date stamp into var
+    var myTime = toConv[1]; //puts Time stamp into var
+    myDate = myDate.split("/"); //splits the date into 3 seperate elements to convert into number later
+    myTime = myTime.split(":"); //splits the time into 3 seperate elements to convert into number later
     length = myDate.length;
-    numConv = myDate;
-    myDate = toNum(myDate, length);
+    numConv = myDate; //sends date to a var to convert into numbers vs strings
+    myDate = toNum(myDate, length); //sends date to be converted into numbers
     length = myTime.length;
-    numConv = myTime;
-    myTime = toNum(myTime, length);
-    csvData[i + 1][7] = serverSideTime(i, myDate, myTime, csvData);
+    numConv = myTime; //sends time to a var to convert into numbers vs string
+    myTime = toNum(myTime, length); //sends time to be converted into numbers
+    csvData[i + 1][7] = serverSideTime(i, myDate, myTime, csvData); //places the converted variables serverside number to the 7th element of csvData
   }
 }
 
-function serverSideTime(i, myDate, myTime){
-  newDate = myDate[0] + "/" + myDate[1] + "/" + myDate[2] + " " + myTime[0] + ":" + myTime[1] + ":" + myTime[2];
-  var toConv = new Date(newDate).getTime();
-  return toConv;
+function serverSideTime(i, myDate, myTime){ //created the Serverside time code of the closed date and time.
+  newDate = myDate[0] + "/" + myDate[1] + "/" + myDate[2] + " " + myTime[0] + ":" + myTime[1] + ":" + myTime[2]; //combines all the data togetheras a timestamp
+  var toConv = new Date(newDate).getTime(); //inputs the serverside timestamp to return to the csvData column 7
+  return toConv; //returns the Serverside Timestamp to column 7 of csvData replacing the opened date and time.
 }
 
-function compareSecondColumn(a, b) {
+function compareSecondColumn(a, b) { //sorts the csvData array by the 7th column
     if (a[7] === b[7]) {
         return 0;
     }
@@ -110,3 +111,28 @@ function compareSecondColumn(a, b) {
         return (a[7] < b[7]) ? -1 : 1;
     }
 }
+function printTableHeader(){ //to print the TH to the DOM
+  var tradeData = document.getElementById('tradeData');
+  var trEl = document.createElement('tr'); //creates table div.
+  trEl.setAttribute("class","market-data");// gives created row an Class.
+  for(var i = 1; i < csvData[0].length; i++){
+    var thEl = document.createElement('th'); //creates top table row.
+    thEl.textContent = csvData[0][i];
+    trEl.appendChild(thEl);
+  }
+  tradeData.appendChild(trEl);
+  for (var i = 0; i < csvData[0].length; i++){ //remove the first element in the array with nothing so it does not sort the header into csvData
+    csvData[i] = "";
+  }
+  // csvData.splice(0,1);
+}
+
+$('.btc-markets').on('click', function() {
+      alert('btc-markets');
+});
+$('.eth-markets').on('click', function() {
+      alert('eth-markets');
+});
+$('.usdt-markets').on('click', function() {
+      alert('usdt-markets');
+});
