@@ -30,7 +30,8 @@ readFile = function(csv){
     }
   timeCodeConv(csvData);
   printTableHeader();
-  csvData.sort(compareSecondColumn);
+  csvData.sort(); //initial Name Sort
+  csvData.sort(compareSecondColumn); //initial number sort by 7
   buildTable();
   };
   //reader.readAsBinaryString(fileInput.files[0]);
@@ -39,18 +40,12 @@ readFile = function(csv){
 fileInput.addEventListener('change', readFile);
 
 function buildTable() {
+  buildButtons();
   for (var j = 0; j < csvData.length; j++){
     var trEl = document.createElement('tr'); //creates table div.
-    debugger;
     var coin = csvData[j][1];
-    if (csvData[j][1].search("BTC") == true) {
-      coin += " btc-markets";
-    } else if (csvData[j][1].search("ETH") == true) {
-      coin += " eth-markets";
-    } else if (csvData[j][1].search("USDT") == true){
-      coin += " usdt-markets";
-    }
     trEl.setAttribute("class", coin);// gives created row an Class.
+    trEl.className = coin;
     for (var k = 1; k < csvData[j].length; k++){
       var rowData = [];
       var tdEl = document.createElement('td'); //creates table data.
@@ -127,12 +122,37 @@ function printTableHeader(){ //to print the TH to the DOM
   // csvData.splice(0,1);
 }
 
-$('.btc-markets').on('click', function() {
-      alert('btc-markets');
-});
-$('.eth-markets').on('click', function() {
-      alert('eth-markets');
-});
-$('.usdt-markets').on('click', function() {
-      alert('usdt-markets');
-});
+function buildButtons(){
+  var button = []; //to have the classNames for buttons later
+  var check; //for bool value eval
+  for (var i = 0; i < csvData.length; i++){
+    var buttonName = csvData[i][1]; //sends market to variable
+    check = button.includes(buttonName); //checks button array for current market
+    if (check === false){ //pushes market Name if name does not exist
+      button.push(buttonName);
+    }
+  }
+  button.sort(); //sorts the market buttons by name
+  var pageButton = document.getElementById("button"); //gets the button div to add button to
+  var div = document.createElement("div"); //creates div for each button
+  for (var i = 0; i < button.length; i++){
+    var butEl = document.createElement("button"); //creates the button
+    butEl.setAttribute("class", button[i]); //sets class to the div with the market name
+    butEl.textContent = button[i]; //gives the button the market name
+    pageButton.appendChild(butEl); //sends the created button to the dom
+  }
+}
+
+//working filter for markets
+
+// $(window).click(function(e) {
+//   if (e == td){
+//     e = event.target;
+//     var className = e.className;
+//     if (e.style.display === "none") {
+//         tr.style.display = "inline";
+//     } else {
+//         tr.style.display = "none";
+//     }
+//   }
+// })
